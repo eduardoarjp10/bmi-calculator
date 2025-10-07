@@ -2,7 +2,7 @@
 **Mini Projeto Prático — Testes Unitários e Cobertura de Código**
 
 **Disciplina:** Qualidade de Software  
-**Curso:** Sistemas Para Internet
+**Curso:** Sistemas Para Internet  
 **Instituição:** UNIESP  
 **Professor:** Ângelo  
 **Aluno:** Eduardo Araújo Pereira  
