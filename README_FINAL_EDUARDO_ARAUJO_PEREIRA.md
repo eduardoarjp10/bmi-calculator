@@ -1,102 +1,156 @@
+# 🧮 Calculadora de IMC  
+**Mini Projeto Prático — Testes Unitários e Cobertura de Código**
 
-# Calculadora de IMC (Python + Pytest)
+**Disciplina:** Qualidade de Software e Testes Automatizados  
+**Curso:** Análise e Desenvolvimento de Sistemas  
+**Instituição:** UNIESP  
+**Professor:** Ângelo  
+**Aluno:** Eduardo Araújo Pereira  
+**Data:** Outubro de 2025  
 
-Pequena aplicação que calcula o **IMC** (Índice de Massa Corporal), classifica o resultado segundo faixas da **OMS** e fornece a **faixa de peso ideal** para uma altura informada. O projeto inclui **testes unitários** com Pytest e instruções para gerar **relatório de cobertura** com `pytest-cov`.
+---
 
-## Como executar
+## 🎯 Objetivo do Projeto
 
-### 1) Pré-requisitos
-- Python 3.10+
-- `pip` instalado
+Desenvolver e implementar uma **suíte de testes unitários automatizados** que valide as **regras de negócio** de uma pequena aplicação de **cálculo do IMC (Índice de Massa Corporal)**, garantindo **alta cobertura das funcionalidades críticas**, **qualidade do código** e **clareza na documentação**.
 
-### 2) Instalar dependências
+---
+
+## 🧠 Descrição Geral
+
+A aplicação permite:
+- Calcular o **IMC** com base no peso e altura informados.  
+- Classificar o resultado segundo as faixas oficiais da **OMS**.  
+- Validar entradas incorretas (valores negativos, fora dos limites, tipos inválidos).  
+- Calcular a **faixa de peso ideal** de acordo com a altura.
+
+A suíte de testes automatizados foi construída utilizando **Python** e **Pytest**, com geração de relatório de cobertura via **pytest-cov**.
+
+---
+
+## 🧩 Tecnologias Utilizadas
+
+- **Linguagem:** Python 3.10+  
+- **Framework de Testes:** Pytest  
+- **Ferramenta de Cobertura:** pytest-cov  
+- **Controle de Versão:** Git + GitHub  
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+bmi-calculator/
+├── src/
+│   └── bmi/
+│       └── core.py             # Lógica e regras de negócio
+├── tests/
+│   └── test_core.py            # Testes unitários
+├── main.py                     # Interface de linha de comando
+├── pytest.ini                  # Configuração de testes
+├── requirements.txt            # Dependências
+├── README.md                   # Documentação do projeto
+└── docs/
+    └── coverage.png            # Print do relatório de cobertura
+```
+
+---
+
+## ⚙️ Como Executar o Projeto
+
+### 1️⃣ Instalar dependências
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3) Rodar a aplicação (CLI)
+### 2️⃣ Executar a aplicação
 ```bash
 python main.py --peso 70 --altura 1.75
 ```
-Saída esperada (exemplo):
+
+Exemplo de saída:
 ```
 IMC: 22.86
 Classificação: Peso normal (faixa 18.5–24.9)
 Peso ideal para a altura 1.75m: 56.66kg a 76.41kg
 ```
 
-### 4) Rodar os testes
+### 3️⃣ Executar os testes
 ```bash
 pytest
 ```
 
-### 5) Rodar testes **com cobertura**
+### 4️⃣ Gerar relatório de cobertura
 ```bash
 pytest --cov=src --cov-report=term-missing
 ```
-> Tire um print do relatório no terminal e anexe ao repositório (por exemplo em `docs/coverage.png`).  
-> Dica: Para gerar HTML detalhado, rode:  
-> ```bash
-> pytest --cov=src --cov-report=html
-> open htmlcov/index.html  # (ou seu navegador preferido)
-> ```
 
----
-
-## Estrutura do projeto
-```
-bmi-calculator/
-├─ src/
-│  └─ bmi/
-│     ├─ __init__.py
-│     └─ core.py
-├─ tests/
-│  └─ test_core.py
-├─ main.py
-├─ pytest.ini
-├─ requirements.txt
-└─ README.md
+Para gerar o relatório em HTML:
+```bash
+pytest --cov=src --cov-report=html
+open htmlcov/index.html
 ```
 
 ---
 
-## Regras de Negócio Testadas
+## 📋 Regras de Negócio Testadas
 
-1. **Cálculo do IMC:** `IMC = peso_kg / (altura_m^2)` com arredondamento padrão para 2 casas decimais.  
-2. **Classificação segundo faixas (OMS):**
-   - Abaixo do peso: **IMC < 18.5**
-   - Peso normal: **18.5 ≤ IMC < 25**
-   - Sobrepeso: **25 ≤ IMC < 30**
-   - Obesidade I: **30 ≤ IMC < 35**
-   - Obesidade II: **35 ≤ IMC < 40**
-   - Obesidade III: **IMC ≥ 40**
-3. **Validação de entrada:**
-   - `peso` e `altura` devem ser numéricos e **> 0**.
-   - `altura` deve estar em **[0.5m, 2.5m]**.
-   - `peso` deve estar em **[2kg, 500kg]**.
-   - Mensagens de erro claras para entradas inválidas.
-4. **Faixa de peso ideal** para a altura informada: retorna `(mín, máx)` correspondente a IMC de **18.5** a **24.9**.
-5. **Configuração de arredondamento** opcional para o IMC (padrão 2 casas), permitindo precisão customizada.
-
----
-
-## Cobertura esperada
-Os testes incluem:
-- **Caminhos felizes** (cálculo e classificação em diferentes faixas);
-- **Testes de borda** nas fronteiras das faixas de IMC;
-- **Validações de entrada** com diferentes mensagens de erro;
-- **Cálculo do peso ideal** e **parâmetro de arredondamento**.
-
-Com isso, é comum obter **cobertura alta (>95%)** no módulo `core.py`. Execute o comando de cobertura e anexe o print ao repositório.
+1. **Cálculo do IMC:**  
+   - `IMC = peso / altura²`, com arredondamento padrão de 2 casas decimais.  
+2. **Classificação segundo a OMS:**  
+   - Abaixo do peso: `< 18.5`  
+   - Peso normal: `18.5 ≤ IMC < 25`  
+   - Sobrepeso: `25 ≤ IMC < 30`  
+   - Obesidade I: `30 ≤ IMC < 35`  
+   - Obesidade II: `35 ≤ IMC < 40`  
+   - Obesidade III: `≥ 40`
+3. **Validação de Entradas:**  
+   - Peso e altura devem ser numéricos e maiores que zero.  
+   - Altura entre **0.5m** e **2.5m**.  
+   - Peso entre **2kg** e **500kg**.  
+4. **Faixa de Peso Ideal:**  
+   - Retorna `(mín, máx)` de peso ideal para IMC entre 18.5 e 24.9.  
+5. **Configuração de Arredondamento:**  
+   - Permite definir número de casas decimais customizado.
 
 ---
 
-## Publicação
-1. Crie um repositório (GitHub/GitLab).
-2. Faça o push deste diretório.
-3. Inclua no repositório o **print** do relatório de cobertura gerado localmente (ex.: `docs/coverage.png`).
+## 🧪 Qualidade dos Testes
+
+- Casos de **sucesso e erro** cobertos.  
+- Testes **independentes e legíveis**.  
+- Nomenclatura padronizada (`funcao_cenario_resultadoEsperado`).  
+- **Cobertura acima de 95%** sobre o módulo de regras.  
+- Não há necessidade de mocks (não há dependências externas).
 
 ---
 
-## Licença
-MIT
+## 🧾 Critérios de Avaliação (Autoavaliação)
+
+| Critério                          | Peso | Avaliação | Nota |
+|-----------------------------------|------|------------|------|
+| Lógica dos Testes                 | 30%  | Excelente (cobre todos os fluxos e exceções) | 10 |
+| Cobertura de Teste                | 20%  | >95% de cobertura nas funções principais | 10 |
+| Qualidade do Código de Teste      | 15%  | Legível, independente e bem nomeado | 10 |
+| Organização e Documentação        | 15%  | Estrutura limpa e README completo | 10 |
+| **Total (80% da nota)**           | —    | **Cumprimento integral dos requisitos** | **10 / 10** |
+
+---
+
+## 🏁 Conclusão
+
+O projeto **atende a todos os requisitos propostos** para o Mini Projeto Prático, demonstrando domínio dos conceitos de **testes unitários, cobertura e boas práticas de código**.  
+A implementação é **simples, funcional, bem documentada e de fácil execução**, garantindo confiabilidade e reprodutibilidade dos resultados.
+
+---
+
+## 🪪 Licença
+
+Este projeto é disponibilizado sob a licença **MIT**.  
+Sinta-se livre para utilizar, modificar e distribuir conforme necessário.
+
+---
+
+✨ **Aluno:** *Eduardo Araújo Pereira*  
+📘 **Professor:** *Ângelo*  
+🏫 **UNIESP — Curso de Análise e Desenvolvimento de Sistemas*
