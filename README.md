@@ -1,8 +1,8 @@
 # 🧮 Calculadora de IMC  
 **Mini Projeto Prático — Testes Unitários e Cobertura de Código**
 
-**Disciplina:** Qualidade de Software e Testes Automatizados  
-**Curso:** Análise e Desenvolvimento de Sistemas  
+**Disciplina:** Qualidade de Software  
+**Curso:** Sistemas Para Internet
 **Instituição:** UNIESP  
 **Professor:** Ângelo  
 **Aluno:** Eduardo Araújo Pereira  
